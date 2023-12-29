@@ -245,8 +245,11 @@ function Gathering({ params }) {
                                         <Th>{item.typeNote}</Th>
                                         <Td>
                                             <div className="relative">
-                                                <Button onClick={openModal}>
-                                                    Gửi tới điểm Giao dịch
+                                                <Button
+                                                    onClick={openModal}
+                                                    className="bg-green-500 my-4"
+                                                >
+                                                    Gửi Giao dịch
                                                 </Button>
 
                                                 {modalOpen && (
@@ -278,6 +281,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -289,6 +293,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -302,6 +307,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -334,6 +340,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -344,6 +351,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -415,7 +423,7 @@ function Gathering({ params }) {
                                             </div>
                                             <div className="relative">
                                                 <Button className="bg-blue-600" onClick={openEdit}>
-                                                    Edit
+                                                    Sửa
                                                 </Button>
                                                 {modalEdit && (
                                                     <div
@@ -446,6 +454,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -457,6 +466,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -470,6 +480,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -502,6 +513,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -512,6 +524,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -562,8 +575,11 @@ function Gathering({ params }) {
                                             </div>
 
                                             <div className="relative">
-                                                <Button onClick={openModals}>
-                                                    Gửi tới điểm Tập kết
+                                                <Button
+                                                    onClick={openModals}
+                                                    className="bg-orange-600 my-4"
+                                                >
+                                                    Gửi Tập kết
                                                 </Button>
                                                 {modalOpens && (
                                                     <div
@@ -594,6 +610,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -605,6 +622,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -618,6 +636,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -650,6 +669,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -660,6 +680,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -722,6 +743,109 @@ function Gathering({ params }) {
                                                                 >
                                                                     Gửi
                                                                 </Button>
+                                                            </section>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="relative">
+                                                <Button className="bg-blue-600" onClick={openView}>
+                                                    In đơn hàng
+                                                </Button>
+                                                {modalView && (
+                                                    <div
+                                                        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+                                                        onClick={closeView}
+                                                    >
+                                                        <div
+                                                            className="bg-white p-6 rounded-md"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            <span
+                                                                className="absolute top-0 right-0 p-4 cursor-pointer text-xl"
+                                                                onClick={closeView}
+                                                            >
+                                                                &times;
+                                                            </span>
+                                                            <section className="w-[1000px] p-4">
+                                                                <h1 className="text-center font-bold text-5xl text-black">
+                                                                    Magic Post
+                                                                </h1>
+
+                                                                <div className="border border-black flex mt-[10px]">
+                                                                    <div className="">
+                                                                        <div className="flex">
+                                                                            <div className="p-4">
+                                                                                <h2>
+                                                                                    <span className="text-xl font-medium underline">
+                                                                                        {" "}
+                                                                                        Họ Tên/ địa
+                                                                                        chỉ
+                                                                                    </span>{" "}
+                                                                                    : {item.name}
+                                                                                </h2>
+                                                                                <p>
+                                                                                    {item.address}
+                                                                                </p>
+                                                                                <p>{item.phone}</p>
+                                                                            </div>
+                                                                            <div className="border border-l border-black"></div>
+                                                                            <div className="p-4">
+                                                                                <h2 className="text-xl font-medium underline">
+                                                                                    Loại hàng gửi
+                                                                                </h2>
+                                                                                <p>{item.type}</p>
+                                                                            </div>
+                                                                            <div className="border border-l border-black"></div>
+                                                                            <div className="p-4">
+                                                                                <h2 className="text-xl font-medium underline">
+                                                                                    Dịch vụ đặc biệt
+                                                                                    cộng thêm :
+                                                                                </h2>
+                                                                                <p>
+                                                                                    ......................................................................................
+                                                                                </p>
+                                                                                <p>
+                                                                                    Mã hợp đồng
+                                                                                    ............................
+                                                                                </p>
+                                                                            </div>
+                                                                            <Image
+                                                                                src={qr}
+                                                                                width={300}
+                                                                                height={300}
+                                                                            />
+                                                                        </div>
+                                                                        <div className="border border-l border-black"></div>
+                                                                        <div className="p-4">
+                                                                            <h2 className="text-xl font-medium underline">
+                                                                                Cam kết của người
+                                                                                gửi
+                                                                            </h2>
+                                                                            <p>
+                                                                                Tôi chấp nhận các
+                                                                                điều khoản tại mặt
+                                                                                sau phiếu gửi và cam
+                                                                                đoan bưu gửi này
+                                                                                không chứa những
+                                                                                hàng nguy hiểm,
+                                                                                những hàng
+                                                                                cấm.Trường hợp không
+                                                                                phát được tôi sẽ
+                                                                                thanh toán tiền
+                                                                            </p>
+                                                                        </div>
+                                                                        <div className="border border-l border-black"></div>
+                                                                        <div className="p-4">
+                                                                            <h2 className="text-xl font-medium underline">
+                                                                                {" "}
+                                                                                Ký tên
+                                                                            </h2>
+                                                                            <p>{item.name}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="border border-l border-black"></div>
+                                                                </div>
                                                             </section>
                                                         </div>
                                                     </div>
@@ -943,6 +1067,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -954,6 +1079,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -967,6 +1093,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -999,6 +1126,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -1009,6 +1137,7 @@ function Gathering({ params }) {
                                                                         handleChange={
                                                                             setValueSendNote
                                                                         }
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>

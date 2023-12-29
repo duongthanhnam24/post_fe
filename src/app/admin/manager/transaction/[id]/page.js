@@ -17,6 +17,8 @@ import { sendNote } from "@/service/gathering";
 import { toast } from "react-toastify";
 import { updateNote } from "@/service/NOTE";
 
+import qr from "@/../../public/img/qr.png";
+import Image from "next/image";
 function TransactionView({ params }) {
     const [transaction, setTransaction] = useState();
     const [modalOpen, setModalOpen] = useState(false);
@@ -27,6 +29,9 @@ function TransactionView({ params }) {
     const openEdit = () => setModalEdit(true);
     const closeEdit = () => setModalEdit(false);
     const [sendNoteS, setSendNoteS] = useState();
+    const [modalView, setModalView] = useState(false);
+    const openView = () => setModalView(true);
+    const closeView = () => setModalView(false);
     const [typeNoteFilter, setTypeNoteFilter] = useState("Tất cả");
     const [user, setUser] = useState({
         teller: [],
@@ -204,8 +209,11 @@ function TransactionView({ params }) {
                                         <Th>{item.typeNote}</Th>
                                         <Th>
                                             <div className="relative">
-                                                <Button onClick={openModal}>
-                                                    Gửi tới điểm tập kết
+                                                <Button
+                                                    onClick={openModal}
+                                                    className="bg-green-600"
+                                                >
+                                                    Gửi tập kết
                                                 </Button>
 
                                                 {modalOpen && (
@@ -235,6 +243,7 @@ function TransactionView({ params }) {
                                                                             "Tên người Gửi/Nhận"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -244,6 +253,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"địa chỉ"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -255,6 +265,7 @@ function TransactionView({ params }) {
                                                                             "Số điện thoại"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -281,6 +292,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"Trạng thái"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -289,6 +301,7 @@ function TransactionView({ params }) {
                                                                         name={"station"}
                                                                         placeholder={"Trạm"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -341,6 +354,7 @@ function TransactionView({ params }) {
                                                                             "Tên người Gửi/Nhận"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -350,6 +364,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"địa chỉ"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -361,6 +376,7 @@ function TransactionView({ params }) {
                                                                             "Số điện thoại"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -387,6 +403,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"Trạng thái"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -395,6 +412,7 @@ function TransactionView({ params }) {
                                                                         name={"station"}
                                                                         placeholder={"Trạm"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -413,6 +431,109 @@ function TransactionView({ params }) {
                                                                 >
                                                                     Gửi
                                                                 </Button>
+                                                            </section>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="relative">
+                                                <Button className="bg-blue-600" onClick={openView}>
+                                                    In đơn hàng
+                                                </Button>
+                                                {modalView && (
+                                                    <div
+                                                        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+                                                        onClick={closeView}
+                                                    >
+                                                        <div
+                                                            className="bg-white p-6 rounded-md"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            <span
+                                                                className="absolute top-0 right-0 p-4 cursor-pointer text-xl"
+                                                                onClick={closeView}
+                                                            >
+                                                                &times;
+                                                            </span>
+                                                            <section className="w-[1000px] p-4">
+                                                                <h1 className="text-center font-bold text-5xl text-black">
+                                                                    Magic Post
+                                                                </h1>
+
+                                                                <div className="border border-black flex mt-[10px]">
+                                                                    <div className="">
+                                                                        <div className="flex">
+                                                                            <div className="p-4">
+                                                                                <h2>
+                                                                                    <span className="text-xl font-medium underline">
+                                                                                        {" "}
+                                                                                        Họ Tên/ địa
+                                                                                        chỉ
+                                                                                    </span>{" "}
+                                                                                    : {item.name}
+                                                                                </h2>
+                                                                                <p>
+                                                                                    {item.address}
+                                                                                </p>
+                                                                                <p>{item.phone}</p>
+                                                                            </div>
+                                                                            <div className="border border-l border-black"></div>
+                                                                            <div className="p-4">
+                                                                                <h2 className="text-xl font-medium underline">
+                                                                                    Loại hàng gửi
+                                                                                </h2>
+                                                                                <p>{item.type}</p>
+                                                                            </div>
+                                                                            <div className="border border-l border-black"></div>
+                                                                            <div className="p-4">
+                                                                                <h2 className="text-xl font-medium underline">
+                                                                                    Dịch vụ đặc biệt
+                                                                                    cộng thêm :
+                                                                                </h2>
+                                                                                <p>
+                                                                                    ......................................................................................
+                                                                                </p>
+                                                                                <p>
+                                                                                    Mã hợp đồng
+                                                                                    ............................
+                                                                                </p>
+                                                                            </div>
+                                                                            <Image
+                                                                                src={qr}
+                                                                                width={300}
+                                                                                height={300}
+                                                                            />
+                                                                        </div>
+                                                                        <div className="border border-l border-black"></div>
+                                                                        <div className="p-4">
+                                                                            <h2 className="text-xl font-medium underline">
+                                                                                Cam kết của người
+                                                                                gửi
+                                                                            </h2>
+                                                                            <p>
+                                                                                Tôi chấp nhận các
+                                                                                điều khoản tại mặt
+                                                                                sau phiếu gửi và cam
+                                                                                đoan bưu gửi này
+                                                                                không chứa những
+                                                                                hàng nguy hiểm,
+                                                                                những hàng
+                                                                                cấm.Trường hợp không
+                                                                                phát được tôi sẽ
+                                                                                thanh toán tiền
+                                                                            </p>
+                                                                        </div>
+                                                                        <div className="border border-l border-black"></div>
+                                                                        <div className="p-4">
+                                                                            <h2 className="text-xl font-medium underline">
+                                                                                {" "}
+                                                                                Ký tên
+                                                                            </h2>
+                                                                            <p>{item.name}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="border border-l border-black"></div>
+                                                                </div>
                                                             </section>
                                                         </div>
                                                     </div>
@@ -435,8 +556,11 @@ function TransactionView({ params }) {
                                         <Th>{item.typeNote}</Th>
                                         <Th>
                                             <div className="relative">
-                                                <Button onClick={openModal}>
-                                                    Gửi tới điểm tập kết
+                                                <Button
+                                                    onClick={openModal}
+                                                    className="bg-green-600 my-4"
+                                                >
+                                                    Gửi tập kết
                                                 </Button>
 
                                                 {modalOpen && (
@@ -466,6 +590,7 @@ function TransactionView({ params }) {
                                                                             "Tên người Gửi/Nhận"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -475,6 +600,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"địa chỉ"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -486,6 +612,7 @@ function TransactionView({ params }) {
                                                                             "Số điện thoại"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -512,6 +639,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"Trạng thái"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -520,6 +648,7 @@ function TransactionView({ params }) {
                                                                         name={"station"}
                                                                         placeholder={"Trạm"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -542,8 +671,11 @@ function TransactionView({ params }) {
                                                 )}
                                             </div>
                                             <div className="relative">
-                                                <Button className="bg-blue-600" onClick={openEdit}>
-                                                    Edit
+                                                <Button
+                                                    className="bg-blue-600 mb-4"
+                                                    onClick={openEdit}
+                                                >
+                                                    Sửa
                                                 </Button>
                                                 {modalEdit && (
                                                     <div
@@ -572,6 +704,8 @@ function TransactionView({ params }) {
                                                                             "Tên người Gửi/Nhận"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.name}
+                                                                        value={item.name}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -581,6 +715,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"địa chỉ"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.address}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -592,6 +727,7 @@ function TransactionView({ params }) {
                                                                             "Số điện thoại"
                                                                         }
                                                                         handleChange={setValueNote}
+                                                                        value={item.phone}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -618,6 +754,7 @@ function TransactionView({ params }) {
                                                                         type={"text"}
                                                                         placeholder={"Trạng thái"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.Status}
                                                                     />
                                                                 </div>
                                                                 <div>
@@ -626,6 +763,7 @@ function TransactionView({ params }) {
                                                                         name={"station"}
                                                                         placeholder={"Trạm"}
                                                                         handleChange={setValueNote}
+                                                                        value={item.station}
                                                                     />
                                                                 </div>{" "}
                                                                 <div>
@@ -644,6 +782,109 @@ function TransactionView({ params }) {
                                                                 >
                                                                     Gửi
                                                                 </Button>
+                                                            </section>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="relative">
+                                                <Button className="bg-blue-600" onClick={openView}>
+                                                    In đơn hàng
+                                                </Button>
+                                                {modalView && (
+                                                    <div
+                                                        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+                                                        onClick={closeView}
+                                                    >
+                                                        <div
+                                                            className="bg-white p-6 rounded-md"
+                                                            onClick={(e) => e.stopPropagation()}
+                                                        >
+                                                            <span
+                                                                className="absolute top-0 right-0 p-4 cursor-pointer text-xl"
+                                                                onClick={closeView}
+                                                            >
+                                                                &times;
+                                                            </span>
+                                                            <section className="w-[1000px] p-4">
+                                                                <h1 className="text-center font-bold text-5xl text-black">
+                                                                    Magic Post
+                                                                </h1>
+
+                                                                <div className="border border-black flex mt-[10px]">
+                                                                    <div className="">
+                                                                        <div className="flex">
+                                                                            <div className="p-4">
+                                                                                <h2>
+                                                                                    <span className="text-xl font-medium underline">
+                                                                                        {" "}
+                                                                                        Họ Tên/ địa
+                                                                                        chỉ
+                                                                                    </span>{" "}
+                                                                                    : {item.name}
+                                                                                </h2>
+                                                                                <p>
+                                                                                    {item.address}
+                                                                                </p>
+                                                                                <p>{item.phone}</p>
+                                                                            </div>
+                                                                            <div className="border border-l border-black"></div>
+                                                                            <div className="p-4">
+                                                                                <h2 className="text-xl font-medium underline">
+                                                                                    Loại hàng gửi
+                                                                                </h2>
+                                                                                <p>{item.type}</p>
+                                                                            </div>
+                                                                            <div className="border border-l border-black"></div>
+                                                                            <div className="p-4">
+                                                                                <h2 className="text-xl font-medium underline">
+                                                                                    Dịch vụ đặc biệt
+                                                                                    cộng thêm :
+                                                                                </h2>
+                                                                                <p>
+                                                                                    ......................................................................................
+                                                                                </p>
+                                                                                <p>
+                                                                                    Mã hợp đồng
+                                                                                    ............................
+                                                                                </p>
+                                                                            </div>
+                                                                            <Image
+                                                                                src={qr}
+                                                                                width={300}
+                                                                                height={300}
+                                                                            />
+                                                                        </div>
+                                                                        <div className="border border-l border-black"></div>
+                                                                        <div className="p-4">
+                                                                            <h2 className="text-xl font-medium underline">
+                                                                                Cam kết của người
+                                                                                gửi
+                                                                            </h2>
+                                                                            <p>
+                                                                                Tôi chấp nhận các
+                                                                                điều khoản tại mặt
+                                                                                sau phiếu gửi và cam
+                                                                                đoan bưu gửi này
+                                                                                không chứa những
+                                                                                hàng nguy hiểm,
+                                                                                những hàng
+                                                                                cấm.Trường hợp không
+                                                                                phát được tôi sẽ
+                                                                                thanh toán tiền
+                                                                            </p>
+                                                                        </div>
+                                                                        <div className="border border-l border-black"></div>
+                                                                        <div className="p-4">
+                                                                            <h2 className="text-xl font-medium underline">
+                                                                                {" "}
+                                                                                Ký tên
+                                                                            </h2>
+                                                                            <p>{item.name}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="border border-l border-black"></div>
+                                                                </div>
                                                             </section>
                                                         </div>
                                                     </div>
