@@ -1,57 +1,21 @@
-"use client";
-import { BookOpenCheck, FolderCog, LogOut, User, UserCircle2 } from "lucide-react";
-import { Button } from "../ui/button";
+import Image from "next/image";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-
+import { User } from "lucide-react";
+import logo from "../../../public/img/logo.png";
 function Header() {
-    const user = useSelector((state) => state.auth.user);
-    const id = user?._id ?? "";
-    function clearToken() {
-        localStorage.clear();
-    }
     return (
-        <section className="flex justify-between h-[50px] p-4 items-center">
-            <Link href={"/"} className="text-3xl font-bold">
-                Thư Viện
+        <section className="flex items-center h-[80px] bg-[#049945] justify-around text-white font-bold">
+            {/* <Image src={logo} width={100} height={60} /> */}
+            <h1 className="text-5xl">Magic Post</h1>
+            <Link href={"/"} className=" no-underline">
+                Trang chủ
             </Link>
-            <a href="#noti">Bảng tin</a>
-            <a href="#book">Kho sách</a>
-            <Link href={"/noiquy"}>Thông tin thư viện</Link>
-            {user ? (
-                <div className="group">
-                    <Button variant="none" className="flex items-center space-x-2 relative">
-                        <UserCircle2 />
-                        <span className="text-base font-semibold sm:hidden md:hidden">
-                            {user?.name}
-                        </span>
-                    </Button>
-                    <div className="absolute bg-white top-[5%] sm:left-[40%] md:left-[73%] rounded-md box-shad shadow-lg shadow-indigo-500/40 hidden group-hover:block animate-fade-up animate-once animate-duration-[600ms]">
-                        <Button variant="none" className="py-[15px] px-[20px] flex space-x-2">
-                            <User />
-                            <Link href={"/user"}>Thông tin tài khoản</Link>
-                        </Button>
-                        {user?.isAdmin && (
-                            <Button variant="none" className="py-[15px] px-[20px] flex space-x-2">
-                                <FolderCog />
-                                <Link href={"/admin/controller"}>Quản lý </Link>
-                            </Button>
-                        )}
-                        <Button variant="none" className="py-[15px] px-[20px] flex space-x-2">
-                            <LogOut />
-                            <Link href={"/signin"} onClick={() => clearToken()}>
-                                Đăng xuất
-                            </Link>
-                        </Button>
-                    </div>
-                </div>
-            ) : (
-                <Button>
-                    <Link href={"/signin"}>Đăng nhập</Link>
-                </Button>
-            )}
-            <Link href={`/book/${id}`}>
-                <BookOpenCheck />
+            <Link href={"/"}>Giới thiệu</Link>
+            <Link href={"/"}>Dịch vụ</Link>
+            <Link href={"/"}>Tin tức</Link>
+            <Link href={"/"}>Liên hệ</Link>
+            <Link href={"/admin/signin"}>
+                <User />
             </Link>
         </section>
     );
